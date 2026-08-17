@@ -39,32 +39,26 @@ export function initialFX() {
 
   let TextProps = { type: "chars,lines", linesClass: "split-h2" };
 
-  var landingText2 = new SplitText(".landing-h2-info", TextProps);
+  var bimText = new SplitText(".landing-h2-1", TextProps);
+  var vdcText = new SplitText(".landing-h2-2", TextProps);
+  var leadershipText = new SplitText(".landing-h2-info", TextProps);
+  var engineeringText = new SplitText(".landing-h2-info-1", TextProps);
+
+  // Initial load entry for Pair 1 (BIM & Leadership)
   gsap.fromTo(
-    landingText2.chars,
-    { opacity: 0, y: 80, filter: "blur(5px)" },
+    [...bimText.chars, ...leadershipText.chars],
+    { opacity: 0, y: 60, filter: "blur(4px)" },
     {
       opacity: 1,
-      duration: 1.2,
-      filter: "blur(0px)",
-      ease: "power3.inOut",
       y: 0,
+      filter: "blur(0px)",
+      duration: 1.2,
+      ease: "power3.out",
       stagger: 0.025,
-      delay: 0.3,
+      delay: 0.4,
     }
   );
 
-  gsap.fromTo(
-    ".landing-info-h2",
-    { opacity: 0, y: 30 },
-    {
-      opacity: 1,
-      duration: 1.2,
-      ease: "power1.inOut",
-      y: 0,
-      delay: 0.8,
-    }
-  );
   gsap.fromTo(
     [".header", ".icons-section", ".nav-fade"],
     { opacity: 0 },
@@ -76,65 +70,72 @@ export function initialFX() {
     }
   );
 
-  var landingText3 = new SplitText(".landing-h2-info-1", TextProps);
-  var landingText4 = new SplitText(".landing-h2-1", TextProps);
-  var landingText5 = new SplitText(".landing-h2-2", TextProps);
-
-  LoopText(landingText2, landingText3);
-  LoopText(landingText4, landingText5);
+  LoopPairs(bimText, leadershipText, vdcText, engineeringText);
 }
 
-function LoopText(Text1: SplitText, Text2: SplitText) {
-  var tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
-  const delay = 4;
-  const delay2 = delay * 2 + 1;
+function LoopPairs(
+  bimText: SplitText,
+  leadershipText: SplitText,
+  vdcText: SplitText,
+  engineeringText: SplitText
+) {
+  // Hide Pair 2 initially
+  gsap.set([...vdcText.chars, ...engineeringText.chars], {
+    opacity: 0,
+    y: 50,
+  });
 
-  tl.fromTo(
-    Text2.chars,
-    { opacity: 0, y: 80 },
-    {
-      opacity: 1,
-      duration: 1.2,
-      ease: "power3.inOut",
-      y: 0,
-      stagger: 0.1,
-      delay: delay,
-    },
-    0
-  )
-    .fromTo(
-      Text1.chars,
-      { y: 80 },
-      {
-        duration: 1.2,
-        ease: "power3.inOut",
-        y: 0,
-        stagger: 0.1,
-        delay: delay2,
-      },
-      1
-    )
-    .fromTo(
-      Text1.chars,
-      { y: 0 },
-      {
-        y: -80,
-        duration: 1.2,
-        ease: "power3.inOut",
-        stagger: 0.1,
-        delay: delay,
-      },
-      0
-    )
+  const tl = gsap.timeline({ repeat: -1, repeatDelay: 2.5 });
+
+  tl
+    // 1. Transition BIM & LEADERSHIP OUT (upward)
     .to(
-      Text2.chars,
+      [...bimText.chars, ...leadershipText.chars],
       {
-        y: -80,
-        duration: 1.2,
-        ease: "power3.inOut",
-        stagger: 0.1,
-        delay: delay2,
+        opacity: 0,
+        y: -50,
+        duration: 0.7,
+        ease: "power2.inOut",
+        stagger: 0.02,
       },
-      1
+      3.5
+    )
+    // 2. Transition VDC & ENGINEERING IN (upward from bottom)
+    .fromTo(
+      [...vdcText.chars, ...engineeringText.chars],
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: "power2.out",
+        stagger: 0.02,
+      },
+      3.7
+    )
+    // 3. Transition VDC & ENGINEERING OUT (upward)
+    .to(
+      [...vdcText.chars, ...engineeringText.chars],
+      {
+        opacity: 0,
+        y: -50,
+        duration: 0.7,
+        ease: "power2.inOut",
+        stagger: 0.02,
+      },
+      7.5
+    )
+    // 4. Transition BIM & LEADERSHIP back IN (upward from bottom)
+    .fromTo(
+      [...bimText.chars, ...leadershipText.chars],
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: "power2.out",
+        stagger: 0.02,
+      },
+      7.7
     );
 }

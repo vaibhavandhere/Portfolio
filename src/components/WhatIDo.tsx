@@ -87,12 +87,12 @@ const WhatIDo = () => {
             <div className="what-corner"></div>
 
             <div className="what-content-in">
-              <h3>BIM & REALITY</h3>
+              <h3>BIM & REALITY CAPTURE</h3>
               <h4>Digital Delivery & Modeling</h4>
               <p>
-                Leading 3D laser scanning (500+ LiDAR scans), parametric Revit
-                modeling, Dynamo automation, and multidisciplinary clash
-                coordination across 50+ deployment projects.
+                Leading 3D laser scanning, parametric Revit modeling, Dynamo
+                automation, and multidisciplinary clash coordination across 50+
+                deployment projects.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
