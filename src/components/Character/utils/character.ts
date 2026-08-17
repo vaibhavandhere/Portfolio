@@ -83,8 +83,8 @@ const setCharacter = (
         newAvatar.traverse((child: any) => {
           if (child.isMesh || child.isSkinnedMesh) {
             child.visible = true;
-            child.castShadow = true;
-            child.receiveShadow = true;
+            child.castShadow = false;
+            child.receiveShadow = false;
             child.frustumCulled = false;
 
             if (child.material) {
@@ -95,6 +95,9 @@ const setCharacter = (
                 mat.alphaTest = 0.5;
                 mat.depthWrite = true;
                 mat.depthTest = true;
+                mat.polygonOffset = true;
+                mat.polygonOffsetFactor = -1;
+                mat.polygonOffsetUnits = -4;
                 mat.needsUpdate = true;
               }
             }
