@@ -1,9 +1,4 @@
-declare module "gsap-trial";
-declare module "gsap-trial/all";
-declare module "gsap-trial/ScrollTrigger";
-declare module "gsap-trial/ScrollSmoother";
-declare module "gsap-trial/SplitText";
-declare module "gsap-trial/InertiaPlugin";
-declare module "gsap-trial/MorphSVGPlugin";
-declare module "gsap-trial/DrawSVGPlugin";
-declare module "gsap-trial/ScrambleTextPlugin";
+// Type declarations
+declare module "*.glb";
+declare module "*.gltf";
+declare module "*.hdr";

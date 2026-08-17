@@ -2,24 +2,28 @@ import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
-import { ScrollSmoother } from "gsap-trial/ScrollSmoother";
 import "./styles/Navbar.css";
 
-gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
-export let smoother: ScrollSmoother;
+gsap.registerPlugin(ScrollTrigger);
+
+export let smoother = {
+  paused: (isPaused?: boolean) => {
+    if (isPaused !== undefined) {
+      document.body.style.overflow = isPaused ? "hidden" : "auto";
+    }
+  },
+  scrollTop: (top?: number) => {
+    if (top !== undefined) window.scrollTo({ top, behavior: "instant" as ScrollBehavior });
+    return window.scrollY;
+  },
+  scrollTo: (section: string | Element, smooth: boolean = true) => {
+    const target = typeof section === "string" ? document.querySelector(section) : section;
+    target?.scrollIntoView({ behavior: smooth ? "smooth" : "auto" });
+  },
+};
 
 const Navbar = () => {
   useEffect(() => {
-    smoother = ScrollSmoother.create({
-      wrapper: "#smooth-wrapper",
-      content: "#smooth-content",
-      smooth: 0.8,
-      speed: 1.0,
-      effects: false,
-      autoResize: true,
-      ignoreMobileResize: true,
-    });
-
     smoother.scrollTop(0);
     smoother.paused(true);
 
@@ -31,17 +35,13 @@ const Navbar = () => {
         let elem = e.currentTarget as HTMLAnchorElement;
         let section = elem.getAttribute("data-href");
         if (section) {
-          if (smoother && window.innerWidth > 1024) {
-            smoother.scrollTo(section, true, "top top");
-          } else {
-            const target = document.querySelector(section);
-            target?.scrollIntoView({ behavior: "smooth" });
-          }
+          const target = document.querySelector(section);
+          target?.scrollIntoView({ behavior: "smooth" });
         }
       });
     });
     window.addEventListener("resize", () => {
-      ScrollSmoother.refresh(true);
+      ScrollTrigger.refresh();
     });
   }, []);
   return (

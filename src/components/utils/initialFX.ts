@@ -1,5 +1,6 @@
-import { SplitText } from "gsap-trial/SplitText";
+import { SplitText } from "./splitTextHelper";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { smoother } from "../Navbar";
 
 export function initialFX() {
