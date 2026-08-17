@@ -28,33 +28,48 @@ export class SplitText {
 
     elements.forEach((el) => {
       this.originalHTMLs.push(el.innerHTML);
-      const text = el.textContent || "";
-      el.innerHTML = "";
-      const wordsArr = text.split(" ");
-      wordsArr.forEach((word, wIdx) => {
-        const wordSpan = document.createElement("span");
-        wordSpan.className = "split-word";
-        wordSpan.style.display = "inline-block";
-        wordSpan.style.whiteSpace = "nowrap";
 
-        const charsArr = word.split("");
-        charsArr.forEach((char) => {
-          const charSpan = document.createElement("span");
-          charSpan.className = "split-char";
-          charSpan.style.display = "inline-block";
-          charSpan.textContent = char;
-          wordSpan.appendChild(charSpan);
-          this.chars.push(charSpan);
+      // Check if element has child block divs (e.g. multi-line headings)
+      const childDivs = Array.from(el.children).filter(
+        (c) => c.tagName === "DIV"
+      );
+      if (childDivs.length > 0) {
+        childDivs.forEach((child) => {
+          this.splitElement(child as HTMLElement);
         });
+      } else {
+        this.splitElement(el);
+      }
+    });
+  }
 
-        el.appendChild(wordSpan);
-        this.words.push(wordSpan);
+  private splitElement(el: HTMLElement) {
+    const text = el.textContent?.trim() || "";
+    el.innerHTML = "";
+    const wordsArr = text.split(/\s+/).filter(Boolean);
+    wordsArr.forEach((word, wIdx) => {
+      const wordSpan = document.createElement("span");
+      wordSpan.className = "split-word";
+      wordSpan.style.display = "inline-block";
+      wordSpan.style.whiteSpace = "nowrap";
 
-        if (wIdx < wordsArr.length - 1) {
-          const space = document.createTextNode(" ");
-          el.appendChild(space);
-        }
+      const charsArr = word.split("");
+      charsArr.forEach((char) => {
+        const charSpan = document.createElement("span");
+        charSpan.className = "split-char";
+        charSpan.style.display = "inline-block";
+        charSpan.textContent = char;
+        wordSpan.appendChild(charSpan);
+        this.chars.push(charSpan);
       });
+
+      el.appendChild(wordSpan);
+      this.words.push(wordSpan);
+
+      if (wIdx < wordsArr.length - 1) {
+        const space = document.createTextNode(" ");
+        el.appendChild(space);
+      }
     });
   }
 
