@@ -293,6 +293,33 @@ h2.landing-info-white {
   .landing-intro {
     top: 50%;
     left: auto;
+    right: 64%;
+    transform: translate(0%, -50%);
+  }
+
+  .landing-info {
+    bottom: auto;
+    top: 51%;
+    z-index: inherit;
+    text-align: left;
+    transform: translate(0%, -50%);
+    right: auto;
+    left: 64%;
+    width: auto;
+    min-width: max-content;
+    white-space: nowrap;
+  }
+  h2.landing-info-white {
+    font-size: 34px;
+  }
+  h2.landing-info-h2 {
+    font-size: 42px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .landing-intro {
+    top: 50%;
+    left: auto;
     right: 66%;
     transform: translate(0%, -50%);
   }
@@ -304,41 +331,16 @@ h2.landing-info-white {
     text-align: left;
     transform: translate(0%, -50%);
     right: auto;
-    left: 56%;
+    left: 66%;
     width: auto;
-    min-width: 450px;
+    min-width: max-content;
+    white-space: nowrap;
   }
   h2.landing-info-white {
     font-size: 38px;
   }
   h2.landing-info-h2 {
-    font-size: 48px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .landing-intro {
-    top: 50%;
-    left: auto;
-    right: 70%;
-    transform: translate(0%, -50%);
-  }
-
-  .landing-info {
-    bottom: auto;
-    top: 51%;
-    z-index: inherit;
-    text-align: left;
-    transform: translate(0%, -50%);
-    right: auto;
-    left: 58%;
-    width: auto;
-    min-width: 480px;
-  }
-  h2.landing-info-white {
-    font-size: 42px;
-  }
-  h2.landing-info-h2 {
-    font-size: 52px;
+    font-size: 46px;
   }
 }
 @media screen and (min-width: 1600px) {
@@ -350,16 +352,20 @@ h2.landing-info-white {
     line-height: 55px;
   }
   .landing-info h3 {
-    font-size: 30px;
+    font-size: 28px;
+  }
+  .landing-intro {
+    right: 68%;
   }
   .landing-info {
-    left: 58%;
-    min-width: 550px;
+    left: 68%;
+    min-width: max-content;
+    white-space: nowrap;
   }
   h2.landing-info-white {
-    font-size: 46px;
+    font-size: 44px;
   }
   h2.landing-info-h2 {
-    font-size: 58px;
+    font-size: 54px;
   }
 }
