@@ -301,33 +301,6 @@ h2.landing-info-white {
   .landing-intro {
     top: 50%;
     left: auto;
-    right: 64%;
-    transform: translate(0%, -50%);
-  }
-
-  .landing-info {
-    bottom: auto;
-    top: 51%;
-    z-index: inherit;
-    text-align: left;
-    transform: translate(0%, -50%);
-    right: auto;
-    left: 64%;
-    width: auto;
-    min-width: max-content;
-    white-space: nowrap;
-  }
-  h2.landing-info-white {
-    font-size: 34px;
-  }
-  h2.landing-info-h2 {
-    font-size: 42px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .landing-intro {
-    top: 50%;
-    left: auto;
     right: 66%;
     transform: translate(0%, -50%);
   }
@@ -343,12 +316,41 @@ h2.landing-info-white {
     width: auto;
     min-width: max-content;
     white-space: nowrap;
+    overflow: visible;
   }
   h2.landing-info-white {
-    font-size: 38px;
+    font-size: 40px;
   }
   h2.landing-info-h2 {
-    font-size: 46px;
+    font-size: 50px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .landing-intro {
+    top: 50%;
+    left: auto;
+    right: 70%;
+    transform: translate(0%, -50%);
+  }
+
+  .landing-info {
+    bottom: auto;
+    top: 51%;
+    z-index: inherit;
+    text-align: left;
+    transform: translate(0%, -50%);
+    right: auto;
+    left: 70%;
+    width: auto;
+    min-width: max-content;
+    white-space: nowrap;
+    overflow: visible;
+  }
+  h2.landing-info-white {
+    font-size: 45px;
+  }
+  h2.landing-info-h2 {
+    font-size: 55px;
   }
 }
 @media screen and (min-width: 1600px) {
@@ -360,20 +362,21 @@ h2.landing-info-white {
     line-height: 55px;
   }
   .landing-info h3 {
-    font-size: 28px;
+    font-size: 35px;
   }
   .landing-intro {
-    right: 68%;
+    right: 70%;
   }
   .landing-info {
-    left: 68%;
+    left: 70%;
     min-width: max-content;
     white-space: nowrap;
+    overflow: visible;
   }
   h2.landing-info-white {
-    font-size: 44px;
+    font-size: 55px;
   }
   h2.landing-info-h2 {
-    font-size: 54px;
+    font-size: 65px;
   }
 }
