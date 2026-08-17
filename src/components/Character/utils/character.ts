@@ -86,6 +86,18 @@ const setCharacter = (
             child.castShadow = true;
             child.receiveShadow = true;
             child.frustumCulled = false;
+
+            if (child.material) {
+              const mat = child.material;
+              const name = (child.name + " " + (mat.name || "")).toLowerCase();
+              if (name.includes("hair")) {
+                mat.transparent = true;
+                mat.alphaTest = 0.5;
+                mat.depthWrite = true;
+                mat.depthTest = true;
+                mat.needsUpdate = true;
+              }
+            }
           }
         });
 
