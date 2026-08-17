@@ -3,6 +3,14 @@ import { RGBELoader } from "three-stdlib";
 import { gsap } from "gsap";
 
 const setLighting = (scene: THREE.Scene) => {
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+  scene.add(ambientLight);
+
+  const frontKeyLight = new THREE.DirectionalLight(0xffffff, 1.2);
+  frontKeyLight.position.set(1, 14, 8);
+  frontKeyLight.castShadow = true;
+  scene.add(frontKeyLight);
+
   const directionalLight = new THREE.DirectionalLight(0xc7a9ff, 0);
   directionalLight.intensity = 0;
   directionalLight.position.set(-0.47, -0.32, -1);

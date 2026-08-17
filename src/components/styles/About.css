@@ -1,71 +1,68 @@
 .about-section {
   display: flex;
   align-items: center;
-  justify-content: left;
-  place-items: center;
+  justify-content: flex-start;
   position: relative;
   opacity: 1;
   height: auto;
+  min-height: 70vh;
   width: var(--cWidth);
+  max-width: var(--cMaxWidth);
   margin: auto;
+  padding: 60px 0;
+  box-sizing: border-box;
 }
 .about-me {
-  padding: 50px 0px;
-  padding-bottom: 0;
-  width: 500px;
-  max-width: calc(100% - 15px);
+  padding: 20px 0px;
+  width: 100%;
+  max-width: 650px;
 }
 .about-me h3 {
-  font-size: 25px;
+  font-size: clamp(16px, 1.8vw, 22px);
   text-transform: uppercase;
-  letter-spacing: 7px;
-  font-weight: 400;
+  letter-spacing: 5px;
+  font-weight: 500;
   color: var(--accentColor);
+  margin-bottom: 20px;
 }
 
 .about-me p {
-  font-size: 33px;
+  font-size: clamp(19px, 2.1vw, 32px);
   font-weight: 600;
-  line-height: 36px;
-  letter-spacing: 1px;
+  line-height: 1.45;
+  letter-spacing: 0.2px;
+  color: #eae5ec;
+  word-break: normal;
 }
 
-@media only screen and (min-width: 600px) {
-  .about-section {
-    justify-content: center;
-  }
-}
 @media only screen and (min-width: 768px) {
-  .about-me {
-    width: 500px;
-    max-width: calc(100% - 70px);
-    transform: translateY(0%);
-  }
   .about-section {
-    opacity: 1;
+    padding: 80px 0;
+  }
+  .about-me {
+    max-width: 620px;
   }
 }
 @media only screen and (min-width: 1025px) {
   .about-section {
     width: var(--cWidth);
-    justify-content: right;
-    max-width: 1920px;
+    justify-content: flex-end;
     height: var(--vh);
     padding: 0px;
-    opacity: 1;
   }
   .about-me {
     padding: 0px;
-    width: 50%;
+    width: 55%;
+    max-width: 700px;
   }
   .about-me p {
-    font-size: 1.9vw;
-    line-height: 2.3vw;
+    font-size: clamp(21px, 1.8vw, 32px);
+    line-height: 1.45;
   }
 }
 @media only screen and (min-width: 1950px) {
   .about-me p {
-    font-size: 2.5rem;
-    line-height: 2.7rem;
+    font-size: 2.2rem;
+    line-height: 1.45;
   }
 }

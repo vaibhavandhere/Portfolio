@@ -1,8 +1,6 @@
 import * as THREE from "three";
 import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment } from "@react-three/drei";
-import { EffectComposer, N8AO } from "@react-three/postprocessing";
 import {
   BallCollider,
   Physics,
@@ -11,18 +9,61 @@ import {
   RapierRigidBody,
 } from "@react-three/rapier";
 
-const textureLoader = new THREE.TextureLoader();
+function createBallTexture(imageSrc: string): THREE.CanvasTexture {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1024;
+  canvas.height = 512;
+  const ctx = canvas.getContext("2d")!;
+
+  // Pure white base for the ball
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.minFilter = THREE.LinearFilter;
+  texture.magFilter = THREE.LinearFilter;
+
+  const img = new Image();
+  img.src = imageSrc;
+  img.onload = () => {
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const maxLogoSize = 200; // Small, crisp, centered logo badge
+    let w = img.width;
+    let h = img.height;
+    if (w > h) {
+      h = (h / w) * maxLogoSize;
+      w = maxLogoSize;
+    } else {
+      w = (w / h) * maxLogoSize;
+      h = maxLogoSize;
+    }
+
+    // Draw on front face (x: 256)
+    ctx.drawImage(img, 256 - w / 2, 256 - h / 2, w, h);
+    // Draw on back face (x: 768)
+    ctx.drawImage(img, 768 - w / 2, 256 - h / 2, w, h);
+
+    texture.needsUpdate = true;
+  };
+
+  return texture;
+}
+
 const imageUrls = [
-  "/images/react2.webp",
-  "/images/next2.webp",
-  "/images/node2.webp",
-  "/images/express.webp",
-  "/images/mongo.webp",
-  "/images/mysql.webp",
-  "/images/typescript.webp",
-  "/images/javascript.webp",
+  "/images/tech-autodesk.png",
+  "/images/tech-revit.png",
+  "/images/tech-autocad.png",
+  "/images/tech-procore.png",
+  "/images/tech-navisworks.png",
+  "/images/tech-bluebeam.png",
+  "/images/tech-forma.png",
+  "/images/tech-dynamo.png",
+  "/images/tech-openspace.png",
 ];
-const textures = imageUrls.map((url) => textureLoader.load(url));
+const textures = typeof window !== "undefined" ? imageUrls.map(createBallTexture) : [];
 
 const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
 
@@ -129,11 +170,10 @@ const TechStack = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const threshold = document
-        .getElementById("work")!
-        .getBoundingClientRect().top;
-      setIsActive(scrollY > threshold);
+      const el = document.querySelector(".techstack");
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      setIsActive(rect.top < window.innerHeight && rect.bottom > 0);
     };
     document.querySelectorAll(".header a").forEach((elem) => {
       const element = elem as HTMLAnchorElement;
@@ -156,56 +196,42 @@ const TechStack = () => {
       (texture) =>
         new THREE.MeshPhysicalMaterial({
           map: texture,
-          emissive: "#ffffff",
-          emissiveMap: texture,
-          emissiveIntensity: 0.3,
-          metalness: 0.5,
-          roughness: 1,
-          clearcoat: 0.1,
+          color: "#ffffff",
+          roughness: 0.15,
+          metalness: 0.05,
+          clearcoat: 0.8,
+          clearcoatRoughness: 0.1,
         })
     );
   }, []);
 
   return (
-    <div className="techstack">
-      <h2> My Techstack</h2>
+    <div className="techstack section-container" id="techstack">
+      <h2>My Techstack</h2>
 
       <Canvas
-        shadows
-        gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
+        shadows={false}
+        dpr={[1, 1.5]}
+        frameloop={isActive ? "always" : "never"}
+        gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
         camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
-        onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
+        onCreated={(state) => (state.gl.toneMappingExposure = 1.2)}
         className="tech-canvas"
       >
-        <ambientLight intensity={1} />
-        <spotLight
-          position={[20, 20, 25]}
-          penumbra={1}
-          angle={0.2}
-          color="white"
-          castShadow
-          shadow-mapSize={[512, 512]}
-        />
-        <directionalLight position={[0, 5, -4]} intensity={2} />
+        <ambientLight intensity={1.2} />
+        <directionalLight position={[10, 15, 10]} intensity={1.5} />
+        <directionalLight position={[-10, -10, -5]} intensity={0.5} />
         <Physics gravity={[0, 0, 0]}>
           <Pointer isActive={isActive} />
           {spheres.map((props, i) => (
             <SphereGeo
               key={i}
               {...props}
-              material={materials[Math.floor(Math.random() * materials.length)]}
+              material={materials[i % materials.length]}
               isActive={isActive}
             />
           ))}
         </Physics>
-        <Environment
-          files="/models/char_enviorment.hdr"
-          environmentIntensity={0.5}
-          environmentRotation={[0, 4, 2]}
-        />
-        <EffectComposer enableNormalPass={false}>
-          <N8AO color="#0f002c" aoRadius={2} intensity={1.15} />
-        </EffectComposer>
       </Canvas>
     </div>
   );

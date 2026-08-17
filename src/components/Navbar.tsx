@@ -13,9 +13,9 @@ const Navbar = () => {
     smoother = ScrollSmoother.create({
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
-      smooth: 1.7,
-      speed: 1.7,
-      effects: true,
+      smooth: 0.8,
+      speed: 1.0,
+      effects: false,
       autoResize: true,
       ignoreMobileResize: true,
     });
@@ -27,11 +27,16 @@ const Navbar = () => {
     links.forEach((elem) => {
       let element = elem as HTMLAnchorElement;
       element.addEventListener("click", (e) => {
-        if (window.innerWidth > 1024) {
-          e.preventDefault();
-          let elem = e.currentTarget as HTMLAnchorElement;
-          let section = elem.getAttribute("data-href");
-          smoother.scrollTo(section, true, "top top");
+        e.preventDefault();
+        let elem = e.currentTarget as HTMLAnchorElement;
+        let section = elem.getAttribute("data-href");
+        if (section) {
+          if (smoother && window.innerWidth > 1024) {
+            smoother.scrollTo(section, true, "top top");
+          } else {
+            const target = document.querySelector(section);
+            target?.scrollIntoView({ behavior: "smooth" });
+          }
         }
       });
     });
@@ -43,14 +48,14 @@ const Navbar = () => {
     <>
       <div className="header">
         <a href="/#" className="navbar-title" data-cursor="disable">
-          Logo
+          VA
         </a>
         <a
-          href="mailto:example@mail.com"
+          href="mailto:vaibhav.andhere06@gmail.com"
           className="navbar-connect"
           data-cursor="disable"
         >
-          example@mail.com
+          vaibhav.andhere06@gmail.com
         </a>
         <ul>
           <li>
@@ -59,8 +64,23 @@ const Navbar = () => {
             </a>
           </li>
           <li>
+            <a data-href="#career" href="#career">
+              <HoverLinks text="EXPERIENCE" />
+            </a>
+          </li>
+          <li>
             <a data-href="#work" href="#work">
-              <HoverLinks text="WORK" />
+              <HoverLinks text="PROJECTS" />
+            </a>
+          </li>
+          <li>
+            <a data-href="#certifications" href="#certifications">
+              <HoverLinks text="CERTS" />
+            </a>
+          </li>
+          <li>
+            <a data-href="#techstack" href="#techstack">
+              <HoverLinks text="TECH" />
             </a>
           </li>
           <li>

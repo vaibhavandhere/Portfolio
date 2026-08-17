@@ -43,40 +43,24 @@ export const handleHeadRotation = (
   lerp: (x: number, y: number, t: number) => number
 ) => {
   if (!headBone) return;
-  if (window.scrollY < 200) {
-    const maxRotation = Math.PI / 6;
+  if (window.scrollY < 400) {
+    const maxRotationY = 0.5;
+    const maxRotationX = 0.35;
     headBone.rotation.y = lerp(
       headBone.rotation.y,
-      mouseX * maxRotation,
+      mouseX * maxRotationY,
       interpolationY
     );
-    let minRotationX = -0.3;
-    let maxRotationX = 0.4;
-    if (mouseY > minRotationX) {
-      if (mouseY < maxRotationX) {
-        headBone.rotation.x = lerp(
-          headBone.rotation.x,
-          -mouseY - 0.5 * maxRotation,
-          interpolationX
-        );
-      } else {
-        headBone.rotation.x = lerp(
-          headBone.rotation.x,
-          -maxRotation - 0.5 * maxRotation,
-          interpolationX
-        );
-      }
-    } else {
-      headBone.rotation.x = lerp(
-        headBone.rotation.x,
-        -minRotationX - 0.5 * maxRotation,
-        interpolationX
-      );
-    }
-  } else {
+    headBone.rotation.x = lerp(
+      headBone.rotation.x,
+      -mouseY * maxRotationX,
+      interpolationX
+    );
+  } else if (window.scrollY < 1800) {
     if (window.innerWidth > 1024) {
-      headBone.rotation.x = lerp(headBone.rotation.x, -0.4, 0.03);
-      headBone.rotation.y = lerp(headBone.rotation.y, -0.3, 0.03);
+      // In About Me: face looking level (-0.02) and towards the text (-0.25) + responsive mouse tracking
+      headBone.rotation.x = lerp(headBone.rotation.x, -0.02 - mouseY * 0.15, 0.05);
+      headBone.rotation.y = lerp(headBone.rotation.y, -0.25 + mouseX * 0.25, 0.05);
     }
   }
 };

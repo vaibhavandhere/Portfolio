@@ -87,24 +87,25 @@ const WhatIDo = () => {
             <div className="what-corner"></div>
 
             <div className="what-content-in">
-              <h3>DEVELOP</h3>
-              <h4>Description</h4>
+              <h3>BIM & REALITY</h3>
+              <h4>Digital Delivery & Modeling</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                quia aliquid laboriosam ducimus sit molestiae.
+                Leading 3D laser scanning (500+ LiDAR scans), parametric Revit
+                modeling, Dynamo automation, and multidisciplinary clash
+                coordination across 50+ deployment projects.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
-                <div className="what-tags">JavaScript</div>
-                <div className="what-tags">TypeScript</div>
-                <div className="what-tags">Three.js</div>
-                <div className="what-tags">React</div>
-                <div className="what-tags">Css</div>
-                <div className="what-tags">Node.js</div>
-                <div className="what-tags">Next.js</div>
-                <div className="what-tags">Express.js</div>
-                <div className="what-tags">PHP</div>
-                <div className="what-tags">MySql</div>
+                <div className="what-tags">Revit</div>
+                <div className="what-tags">Navisworks</div>
+                <div className="what-tags">LiDAR Scanning</div>
+                <div className="what-tags">Dynamo</div>
+                <div className="what-tags">AutoCAD</div>
+                <div className="what-tags">ACC Forma</div>
+                <div className="what-tags">Cyclone 360</div>
+                <div className="what-tags">Power BI</div>
+                <div className="what-tags">Synchro 4D</div>
+                <div className="what-tags">CM Builder</div>
               </div>
               <div className="what-arrow"></div>
             </div>
@@ -128,22 +129,26 @@ const WhatIDo = () => {
             </div>
             <div className="what-corner"></div>
             <div className="what-content-in">
-              <h3>DESIGN</h3>
-              <h4>Description</h4>
+              <h3>VDC & LEADERSHIP</h3>
+              <h4>Coordination & Field Tech</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                quia aliquid laboriosam ducimus sit molestiae
+                Driving stakeholder coordination across design, construction,
+                and robotics teams. Managing milestone tracking, risk
+                mitigation, schedule optimization, and cross-functional digital
+                delivery standards.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
-                <div className="what-tags">Blender</div>
-                <div className="what-tags">Zbrush</div>
-                <div className="what-tags">UI Design</div>
-                <div className="what-tags">Motion</div>
-                <div className="what-tags">Rigging</div>
-                <div className="what-tags">3D Animation</div>
-                <div className="what-tags">Character Design</div>
-                <div className="what-tags">Modelling</div>
+                <div className="what-tags">Procore</div>
+                <div className="what-tags">Bluebeam Revu</div>
+                <div className="what-tags">Smartsheet</div>
+                <div className="what-tags">MS Project</div>
+                <div className="what-tags">Drone Ops (FAA-107)</div>
+                <div className="what-tags">Pix4D</div>
+                <div className="what-tags">BIM Execution Plans</div>
+                <div className="what-tags">QuickSight</div>
+                <div className="what-tags">Asana</div>
+                <div className="what-tags">QA/QC Workflows</div>
               </div>
               <div className="what-arrow"></div>
             </div>

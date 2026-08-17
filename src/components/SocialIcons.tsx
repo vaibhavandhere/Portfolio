@@ -1,8 +1,7 @@
 import {
-  FaGithub,
-  FaInstagram,
   FaLinkedinIn,
-  FaXTwitter,
+  FaEnvelope,
+  FaPhone,
 } from "react-icons/fa6";
 import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
@@ -12,10 +11,12 @@ import HoverLinks from "./HoverLinks";
 const SocialIcons = () => {
   useEffect(() => {
     const social = document.getElementById("social") as HTMLElement;
+    if (!social) return;
 
     social.querySelectorAll("span").forEach((item) => {
       const elem = item as HTMLElement;
       const link = elem.querySelector("a") as HTMLElement;
+      if (!link) return;
 
       const rect = elem.getBoundingClientRect();
       let mouseX = rect.width / 2;
@@ -60,27 +61,40 @@ const SocialIcons = () => {
     <div className="icons-section">
       <div className="social-icons" data-cursor="icons" id="social">
         <span>
-          <a href="https://github.com" target="_blank">
-            <FaGithub />
-          </a>
-        </span>
-        <span>
-          <a href="https://www.linkedin.com" target="_blank">
+          <a
+            href="https://www.linkedin.com/in/vaibhavandhere"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+          >
             <FaLinkedinIn />
           </a>
         </span>
         <span>
-          <a href="https://x.com" target="_blank">
-            <FaXTwitter />
+          <a
+            href="mailto:vaibhav.andhere06@gmail.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Email"
+          >
+            <FaEnvelope />
           </a>
         </span>
         <span>
-          <a href="https://www.instagram.com" target="_blank">
-            <FaInstagram />
+          <a
+            href="tel:+19793268430"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Phone"
+          >
+            <FaPhone />
           </a>
         </span>
       </div>
-      <a className="resume-button" href="#">
+      <a
+        className="resume-button"
+        href="mailto:vaibhav.andhere06@gmail.com?subject=Resume%20Request%20-%20Vaibhav%20Andhere"
+      >
         <HoverLinks text="RESUME" />
         <span>
           <TbNotes />

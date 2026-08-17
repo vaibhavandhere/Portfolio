@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import setCharacter from "./utils/character";
 import setLighting from "./utils/lighting";
@@ -10,7 +10,6 @@ import {
   handleHeadRotation,
   handleTouchMove,
 } from "./utils/mouseUtils";
-import setAnimations from "./utils/animationUtils";
 import { setProgress } from "../Loading";
 
 const Scene = () => {
@@ -19,20 +18,21 @@ const Scene = () => {
   const sceneRef = useRef(new THREE.Scene());
   const { setLoading } = useLoading();
 
-  const [character, setChar] = useState<THREE.Object3D | null>(null);
   useEffect(() => {
     if (canvasDiv.current) {
+      canvasDiv.current.innerHTML = "";
       let rect = canvasDiv.current.getBoundingClientRect();
       let container = { width: rect.width, height: rect.height };
       const aspect = container.width / container.height;
       const scene = sceneRef.current;
+      scene.clear();
 
       const renderer = new THREE.WebGLRenderer({
         alpha: true,
         antialias: true,
       });
       renderer.setSize(container.width, container.height);
-      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1;
       canvasDiv.current.appendChild(renderer.domElement);
@@ -53,26 +53,30 @@ const Scene = () => {
       let progress = setProgress((value) => setLoading(value));
       const { loadCharacter } = setCharacter(renderer, scene, camera);
 
-      loadCharacter().then((gltf) => {
-        if (gltf) {
-          const animations = setAnimations(gltf);
-          hoverDivRef.current && animations.hover(gltf, hoverDivRef.current);
-          mixer = animations.mixer;
-          let character = gltf.scene;
-          setChar(character);
-          scene.add(character);
-          headBone = character.getObjectByName("spine006") || null;
-          screenLight = character.getObjectByName("screenlight") || null;
-          progress.loaded().then(() => {
-            setTimeout(() => {
-              light.turnOnLights();
-              animations.startIntro();
-            }, 2500);
-          });
-          window.addEventListener("resize", () =>
-            handleResize(renderer, camera, canvasDiv, character)
-          );
-        }
+      let isCancelled = false;
+
+      loadCharacter().then((res) => {
+        if (isCancelled || !res) return;
+        const { gltf, mixer: animMixer, avatarHead } = res;
+        mixer = animMixer;
+        let character = gltf.scene;
+
+        // Ensure strictly zero duplicate characters exist in the scene
+        scene.children = scene.children.filter((c: any) => c.isLight);
+        scene.add(character);
+
+        headBone =
+          avatarHead ||
+          character.getObjectByName("Head") ||
+          character.getObjectByName("spine006") ||
+          null;
+        screenLight = character.getObjectByName("screenlight") || null;
+        progress.loaded().then(() => {
+          light.turnOnLights();
+        });
+        window.addEventListener("resize", () =>
+          handleResize(renderer, camera, canvasDiv, character)
+        );
       });
 
       let mouse = { x: 0, y: 0 },
@@ -106,35 +110,38 @@ const Scene = () => {
         landingDiv.addEventListener("touchstart", onTouchStart);
         landingDiv.addEventListener("touchend", onTouchEnd);
       }
+      let animationFrameId: number;
       const animate = () => {
-        requestAnimationFrame(animate);
-        if (headBone) {
-          handleHeadRotation(
-            headBone,
-            mouse.x,
-            mouse.y,
-            interpolation.x,
-            interpolation.y,
-            THREE.MathUtils.lerp
-          );
-          light.setPointLight(screenLight);
+        animationFrameId = requestAnimationFrame(animate);
+        const isVisible = window.scrollY < window.innerHeight * 2.8;
+        if (isVisible) {
+          if (headBone) {
+            handleHeadRotation(
+              headBone,
+              mouse.x,
+              mouse.y,
+              interpolation.x,
+              interpolation.y,
+              THREE.MathUtils.lerp
+            );
+            light.setPointLight(screenLight);
+          }
+          const delta = clock.getDelta();
+          if (mixer) {
+            mixer.update(delta);
+          }
+          renderer.render(scene, camera);
         }
-        const delta = clock.getDelta();
-        if (mixer) {
-          mixer.update(delta);
-        }
-        renderer.render(scene, camera);
       };
       animate();
       return () => {
+        isCancelled = true;
+        cancelAnimationFrame(animationFrameId);
         clearTimeout(debounce);
         scene.clear();
         renderer.dispose();
-        window.removeEventListener("resize", () =>
-          handleResize(renderer, camera, canvasDiv, character!)
-        );
         if (canvasDiv.current) {
-          canvasDiv.current.removeChild(renderer.domElement);
+          canvasDiv.current.innerHTML = "";
         }
         if (landingDiv) {
           document.removeEventListener("mousemove", onMouseMove);

@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import gsap from "gsap";
+import { typingActionRef, avatarRef } from "../Character/utils/character";
 
 export function setCharTimeline(
   character: THREE.Object3D<THREE.Object3DEventMap> | null,
@@ -60,7 +61,9 @@ export function setCharTimeline(
       screenLight = object;
     }
   });
-  let neckBone = character?.getObjectByName("spine005");
+  let neckBone =
+    character?.getObjectByName("Neck") ||
+    character?.getObjectByName("spine005");
   if (window.innerWidth > 1024) {
     if (character) {
       tl1
@@ -70,6 +73,10 @@ export function setCharTimeline(
         .to(".landing-container", { opacity: 0, duration: 0.4 }, 0)
         .to(".landing-container", { y: "40%", duration: 0.8 }, 0)
         .fromTo(".about-me", { y: "-50%" }, { y: "0%" }, 0);
+
+      if (neckBone) {
+        tl1.to(neckBone.rotation, { x: -0.02, y: -0.1, duration: 1 }, 0);
+      }
 
       tl2
         .to(
@@ -86,19 +93,62 @@ export function setCharTimeline(
           0
         )
         .to(character.rotation, { y: 0.92, x: 0.12, delay: 3, duration: 3 }, 0)
-        .to(neckBone!.rotation, { x: 0.6, delay: 2, duration: 3 }, 0)
-        .to(monitor.material, { opacity: 1, duration: 0.8, delay: 3.2 }, 0)
-        .to(screenLight.material, { opacity: 1, duration: 0.8, delay: 4.5 }, 0)
+        .to(
+          {},
+          {
+            duration: 3,
+            delay: 1.5,
+            onStart: () => {
+              if (typingActionRef) {
+                typingActionRef.paused = false;
+              }
+            },
+            onReverseComplete: () => {
+              if (typingActionRef) {
+                typingActionRef.paused = true;
+                typingActionRef.time = 0;
+              }
+            },
+          },
+          0
+        );
+
+      if (avatarRef) {
+        tl2.to(
+          avatarRef.position,
+          {
+            x: -0.2,
+            y: 3.45,
+            z: -3.8,
+            duration: 4,
+            ease: "power1.inOut",
+          },
+          0
+        );
+      }
+
+
+      if (neckBone) {
+        tl2.to(neckBone.rotation, { x: -0.05, y: -0.1, delay: 2, duration: 3 }, 0);
+      }
+      if (monitor && monitor.material) {
+        tl2.to(monitor.material, { opacity: 1, duration: 0.8, delay: 3.2 }, 0);
+        tl2.fromTo(
+          monitor.position,
+          { y: -10, z: 2 },
+          { y: 0, z: 0, delay: 1.5, duration: 3 },
+          0
+        );
+      }
+      if (screenLight && screenLight.material) {
+        tl2.to(screenLight.material, { opacity: 1, duration: 0.8, delay: 4.5 }, 0);
+      }
+
+      tl2
         .fromTo(
           ".what-box-in",
           { display: "none" },
           { display: "flex", duration: 0.1, delay: 6 },
-          0
-        )
-        .fromTo(
-          monitor.position,
-          { y: -10, z: 2 },
-          { y: 0, z: 0, delay: 1.5, duration: 3 },
           0
         )
         .fromTo(
