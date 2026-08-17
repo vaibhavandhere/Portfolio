@@ -93,12 +93,13 @@ const setCharacter = (
               if (name.includes("hair")) {
                 mat.transparent = true;
                 mat.alphaTest = 0.5;
-                mat.depthWrite = true;
+                mat.depthWrite = false;
                 mat.depthTest = true;
-                mat.polygonOffset = true;
-                mat.polygonOffsetFactor = -1;
-                mat.polygonOffsetUnits = -4;
                 mat.needsUpdate = true;
+                child.renderOrder = 1;
+              } else {
+                mat.depthWrite = true;
+                child.renderOrder = 0;
               }
             }
           }
