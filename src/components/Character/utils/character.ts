@@ -86,12 +86,13 @@ const setCharacter = (
             child.frustumCulled = false;
 
             const name = (child.name || "").toLowerCase();
-            const isHairOrHead =
-              name.includes("hair") ||
+            const isHair = name.includes("hair");
+            const isHead =
               name.includes("head") ||
-              name.includes("avatar");
+              name.includes("avatar") ||
+              name.includes("body");
 
-            if (isHairOrHead) {
+            if (isHair || isHead) {
               child.castShadow = false;
               child.receiveShadow = false;
             } else {
@@ -105,9 +106,11 @@ const setCharacter = (
                 : [child.material];
               materials.forEach((mat: any) => {
                 if (mat) {
-                  if (name.includes("hair")) {
-                    mat.alphaTest = 0.05;
+                  if (isHair) {
+                    mat.transparent = false;
+                    mat.alphaTest = 0.2;
                     mat.depthWrite = true;
+                    mat.depthTest = true;
                     mat.needsUpdate = true;
                   }
                 }
