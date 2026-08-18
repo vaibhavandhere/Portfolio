@@ -83,39 +83,9 @@ const setCharacter = (
         newAvatar.traverse((child: any) => {
           if (child.isMesh || child.isSkinnedMesh) {
             child.visible = true;
+            child.castShadow = true;
+            child.receiveShadow = true;
             child.frustumCulled = false;
-
-            const name = (child.name || "").toLowerCase();
-            const isHair = name.includes("hair");
-            const isHead =
-              name.includes("head") ||
-              name.includes("avatar") ||
-              name.includes("body");
-
-            if (isHair || isHead) {
-              child.castShadow = false;
-              child.receiveShadow = false;
-            } else {
-              child.castShadow = true;
-              child.receiveShadow = true;
-            }
-
-            if (child.material) {
-              const materials = Array.isArray(child.material)
-                ? child.material
-                : [child.material];
-              materials.forEach((mat: any) => {
-                if (mat) {
-                  if (isHair) {
-                    mat.transparent = false;
-                    mat.alphaTest = 0.2;
-                    mat.depthWrite = true;
-                    mat.depthTest = true;
-                    mat.needsUpdate = true;
-                  }
-                }
-              });
-            }
           }
         });
 

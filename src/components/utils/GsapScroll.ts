@@ -66,14 +66,13 @@ export function setCharTimeline(
     character?.getObjectByName("spine005");
   if (window.innerWidth > 1024) {
     if (character) {
-      gsap.set(".character-model", { xPercent: -50, x: 0 });
+      gsap.set(".character-model", { xPercent: -50, x: 0, y: 0 });
 
       tl1
         .fromTo(character.rotation, { y: 0 }, { y: 0.7, duration: 1 }, 0)
         .to(camera.position, { z: 22 }, 0)
-        .fromTo(
+        .to(
           ".character-model",
-          { xPercent: -50, x: 0 },
           { xPercent: -50, x: "-25%", duration: 1 },
           0
         )
@@ -93,10 +92,16 @@ export function setCharTimeline(
         )
         .to(".about-section", { y: "30%", duration: 6 }, 0)
         .to(".about-section", { opacity: 0, delay: 3, duration: 2 }, 0)
-        .fromTo(
+        .to(
           ".character-model",
-          { pointerEvents: "inherit", xPercent: -50, x: "-25%" },
-          { pointerEvents: "none", xPercent: -50, x: "-12%", delay: 2, duration: 5 },
+          {
+            pointerEvents: "none",
+            xPercent: -50,
+            x: "-12%",
+            delay: 2,
+            duration: 5,
+            immediateRender: false,
+          },
           0
         )
         .to(character.rotation, { y: 0.92, x: 0.12, delay: 3, duration: 3 }, 0)
@@ -166,10 +171,17 @@ export function setCharTimeline(
         );
 
       tl3
-        .fromTo(
+        .to(
           ".character-model",
-          { y: "0%", xPercent: -50, x: "-12%" },
-          { y: "-100%", xPercent: -50, x: "-12%", duration: 4, ease: "none", delay: 1 },
+          {
+            y: "-100%",
+            xPercent: -50,
+            x: "-12%",
+            duration: 4,
+            ease: "none",
+            delay: 1,
+            immediateRender: false,
+          },
           0
         )
         .fromTo(".whatIDO", { y: 0 }, { y: "15%", duration: 2 }, 0)
