@@ -1,21 +1,21 @@
 .icons-section {
   position: fixed;
-  max-width: var(--cMaxWidth);
-  width: var(--cWidth);
+  width: 100vw;
   bottom: 0;
+  left: 0;
   z-index: 99;
-  left: 50%;
-  transform: translateX(-50%);
+  pointer-events: none;
 }
 .social-icons {
-  position: absolute;
-  left: -20px;
-  bottom: 20px;
+  position: fixed;
+  left: 25px;
+  bottom: 25px;
   display: none;
   flex-direction: column;
   gap: 8px;
   z-index: 999;
   padding: 10px;
+  pointer-events: auto;
 }
 .social-icons:hover {
   transition: 0.3s;
@@ -23,11 +23,10 @@
 }
 .social-icons a:hover {
   color: var(--backgroundColor);
-  /* transform: scale(1.2); */
 }
 .social-icons span {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   position: relative;
   display: flex;
 }
@@ -39,17 +38,17 @@
   top: var(--siTop, 50%);
   transform: translate(-50%, -50%);
   display: flex;
-  font-size: 23px;
+  font-size: 22px;
   will-change: left, top;
   transition: transform 0.3s ease-out;
 }
 .resume-button {
-  position: absolute;
-  z-index: 99;
+  position: fixed;
+  z-index: 999;
   display: flex;
   gap: 5px;
-  bottom: 40px;
-  right: 0;
+  bottom: 35px;
+  right: 30px;
   width: auto;
   text-wrap: nowrap;
   letter-spacing: 4px;
@@ -59,6 +58,7 @@
   color: #5e5e5e;
   cursor: pointer;
   transition: 0.5s;
+  pointer-events: auto;
   transform-origin: left bottom;
   transform: translateX(100%) rotateZ(-90deg);
 }
@@ -84,20 +84,20 @@ div.resume-button span {
 @media only screen and (min-width: 900px) {
   .social-icons {
     display: flex;
-    gap: 20px;
+    gap: 16px;
   }
   .social-icons a {
-    font-size: 28px;
+    font-size: 26px;
   }
 }
 @media only screen and (min-width: 768px) {
   .resume-button {
     transform: none;
-    font-size: 20px;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 18px;
   }
   div.resume-button span {
-    font-size: 23px;
+    font-size: 20px;
     margin-top: -1.5px;
   }
 }

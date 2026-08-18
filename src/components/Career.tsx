@@ -16,106 +16,107 @@ const Career = () => {
             <div className="career-info-in">
               <div className="career-role">
                 <h4>Reality Capture BIM Engineer</h4>
-                <h5>Amazon Robotics • Austin, TX</h5>
+                <h5>Amazon Fulfillment Technologies & Robotics • Austin, TX</h5>
               </div>
-              <h3>NOW</h3>
+              <h3>2024 – PRESENT</h3>
             </div>
             <p>
-              Owned end-to-end schedule and digital delivery for 10+
+              Owned end-to-end project delivery and milestone tracking for 15+
               simultaneous deployment projects (Tote-ASRS, OBD-A, ROBIN).
-              Resolved 6,000+ clashes, integrated 500+ LiDAR scans, managed 50+
-              active sites, developed 20+ parametric Revit families, and built
-              Dynamo automation workflows.
+              Resolved 3,000+ clashes across 50+ active deployment sites,
+              captured and integrated 500+ LiDAR scans, developed 20+ parametric
+              Revit families (reducing modeling time by ~75%), and built Dynamo
+              automation workflows.
             </p>
           </div>
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
                 <h4>Senior VDC Engineer</h4>
-                <h5>Joeris General Contractors • San Antonio, TX</h5>
+                <h5>Joeris General Contractors, LLC • San Antonio, TX</h5>
               </div>
-              <h3>2023</h3>
+              <h3>2023 – 2024</h3>
             </div>
             <p>
-              Led VDC execution and trade coordination across 15+ commercial
-              construction projects. Facilitated stakeholder meetings,
-              standardized internal VDC processes, and managed reality capture,
-              drone operations, and 360 camera deployments.
+              Led regional Virtual Design & Construction (VDC) processes across
+              commercial projects. Supported 3D trade coordination, site
+              logistics, 4D sequencing, and field equipment setup (total stations,
+              laser scanners, and UAVs). Collaborated on project-specific VDC
+              strategies and trade buyout contract language.
             </p>
           </div>
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
-                <h4>VDC Engineer</h4>
-                <h5>Joeris General Contractors • San Antonio, TX</h5>
+                <h4>Virtual Design and Construction Engineer</h4>
+                <h5>Joeris General Contractors, LLC • San Antonio, TX</h5>
               </div>
               <h3>2023</h3>
             </div>
             <p>
-              Supported 3D trade coordination, developed BIM execution plans,
-              and performed on-site laser scanning (RTC-360, BLK 360, NavVis
-              VLX). Managed OpenSpace reality capture setups and provided
-              technical training to field teams and trade partners.
+              Planned and executed drone flights, 3D laser scanning with Leica
+              Cyclone processing, and 3D site logistics modeling in CM Builder.
+              Managed reality capture 360 platforms, tracked Tech Hub GPS units,
+              and developed SOPs for operational technologies.
             </p>
           </div>
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
                 <h4>BIM / VDC Intern</h4>
-                <h5>Baker Concrete Construction • Miami, FL</h5>
+                <h5>Baker Concrete Construction, Inc. • Miami, FL</h5>
               </div>
               <h3>2022</h3>
             </div>
             <p>
-              Validated 2D/3D/4D virtual models across 6+ projects. Executed
-              500+ Trimble X7 3D laser scans, conducted drone photogrammetry
-              mapping in Pix4D (300+ aerial images/flight), and coordinated
-              100+ RFIs with project engineers.
+              Created integrated models for trade coordination, integrated 3D
+              printing prototyping, executed field reality capture (Trimble
+              laser scanning and drone photogrammetry), generated 2D/3D
+              elevation maps, and managed RFIs and submittal reviews.
             </p>
           </div>
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
                 <h4>M.S. Construction Management</h4>
-                <h5>Texas A&M University • GPA: 3.9/4.0</h5>
+                <h5>Texas A&M University • Scholarship Recipient</h5>
               </div>
-              <h3>2021</h3>
+              <h3>2021 – 2022</h3>
             </div>
             <p>
-              Master of Science in Construction Management (MSCM) with a 3.9/4.0
-              GPA. Advanced study in Virtual Design & Construction, BIM
-              coordination, risk mitigation, and construction technology
-              innovation.
+              Master of Science in Construction Management (MSCM). Focus on
+              Virtual Design & Construction, BIM coordination, reality capture,
+              field technology integration, and operational leadership.
             </p>
           </div>
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
                 <h4>Program Manager</h4>
-                <h5>7 Frames • Mumbai, India</h5>
+                <h5>7 Frames • Thane, Maharashtra, India</h5>
               </div>
-              <h3>2020</h3>
+              <h3>2020 – 2021</h3>
             </div>
             <p>
-              Led end-to-end program delivery across multiple concurrent
-              projects with 100% on-time milestone delivery. Managed a 30+
-              person team, 30+ vendor partnerships, risk mitigation, and QA
-              workflows.
+              Spearheaded program delivery across strict timelines with 100%
+              milestone adherence. Managed a 50+ person team, vendor
+              collaborations, technical onboarding, quality assurance, and project
+              risk parameters.
             </p>
           </div>
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
-                <h4>Junior Engineer</h4>
-                <h5>Charms Group • Thane, India</h5>
+                <h4>B.E. & Diploma in Civil Engineering</h4>
+                <h5>University of Mumbai & VJTI • Mumbai, India</h5>
               </div>
-              <h3>2019</h3>
+              <h3>2013 – 2019</h3>
             </div>
             <p>
-              Assisted field execution for a $10M+ construction project.
-              Managed formwork for slabs, beams, and columns, assessed
-              reinforcement per BBS for two 10,000 sq. ft. slabs, and supervised
-              site safety protocols.
+              Bachelor of Engineering and Diploma in Civil Engineering.
+              Hands-on surveying (Total Station, Auto Level), concrete
+              management per BBS, structural analysis, and construction jobsite
+              safety protocols.
             </p>
           </div>
         </div>

@@ -4,43 +4,43 @@ import { RiAwardLine } from "react-icons/ri";
 const certs = [
   {
     title: "CM-BIM",
-    issuer: "Certificate of Management - Building Information Modeling",
-    category: "BIM Management",
+    issuer: "Certificate of Management - Building Information Modeling (AGC)",
+    category: "BIM Leadership",
   },
   {
-    title: "FAA Part 107 Remote Pilot",
-    issuer: "Commercial Drone Operations & Aerial Photogrammetry",
-    category: "UAV Operations",
+    title: "FAA Part-107 Drone Pilot",
+    issuer: "Commercial UAV Aerial Mapping & Photogrammetry",
+    category: "Reality Capture",
   },
   {
-    title: "Autodesk Revit Certified",
-    issuer: "Parametric BIM Modeling & Architectural Design",
-    category: "BIM Software",
+    title: "Procore Certified: BIM Manager",
+    issuer: "Procore Technologies • BIM Coordination & Workflows",
+    category: "VDC & Management",
   },
   {
-    title: "Autodesk AutoCAD Certified",
-    issuer: "2D/3D Drafting, Detailing & Technical Standards",
+    title: "Autodesk AutoCAD User",
+    issuer: "Autodesk Certified User • 2D/3D Design & Standards",
     category: "CAD Systems",
   },
   {
-    title: "Procore Certified",
-    issuer: "Construction Financials, Field Management & Quality Control",
+    title: "Bentley STAAD.Pro V8i",
+    issuer: "Bentley Systems • Structural Modeling & Analysis",
+    category: "Engineering",
+  },
+  {
+    title: "Introduction to BIM 360: Next Gen",
+    issuer: "Autodesk • Cloud Collaboration & Model Coordination",
+    category: "Cloud BIM",
+  },
+  {
+    title: "Procore Certified: Student",
+    issuer: "Procore Technologies • Construction Project Management",
     category: "Project Tech",
   },
   {
-    title: "CMIT",
-    issuer: "Construction Manager in Training (CMAA)",
-    category: "Construction Mgmt",
-  },
-  {
-    title: "OSHA 10",
-    issuer: "Construction Safety & Health Standards",
-    category: "Safety & Compliance",
-  },
-  {
-    title: "Diploma in Architectural Design",
-    issuer: "Building Systems & Spatial Architecture",
-    category: "Design",
+    title: "MSCM Scholarship Recipient",
+    issuer: "Texas A&M University • Construction Management Honor",
+    category: "Honors & Awards",
   },
 ];
 

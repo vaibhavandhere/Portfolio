@@ -102,6 +102,7 @@ const WhatIDo = () => {
                 <div className="what-tags">Navisworks</div>
                 <div className="what-tags">LiDAR Scanning</div>
                 <div className="what-tags">Dynamo</div>
+                <div className="what-tags">Grasshopper</div>
                 <div className="what-tags">AutoCAD</div>
                 <div className="what-tags">ACC Forma</div>
                 <div className="what-tags">Cyclone 360</div>
